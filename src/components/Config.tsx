@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DownloadCloud, LogOut, RotateCw, Trash2 } from 'react-feather';
+import { DownloadCloud, RotateCw, Trash2 } from 'react-feather';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from 'react-query';
 
@@ -128,7 +128,7 @@ function ConfigImpl({
     refConfigs.current = configs;
   }, [configs]);
 
-  const openAPIConfigModal = useCallback(() => {
+  useCallback(() => {
     dispatch(openModal('apiConfig'));
   }, [dispatch]);
 
@@ -447,12 +447,6 @@ function ConfigImpl({
             {t('current_backend')}
             <p>{getBackendContent(version) + apiConfig?.baseURL}</p>
           </div>
-          <div className={s0.label}>Action</div>
-          <Button
-            start={<LogOut size={16} />}
-            label={t('switch_backend')}
-            onClick={openAPIConfigModal}
-          />
         </div>
       </div>
     </div>

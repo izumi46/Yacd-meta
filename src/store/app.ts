@@ -148,9 +148,14 @@ export function updateCollapsibleIsOpen(prefix: string, name: string, v: boolean
     saveStateDebounced(getState().app);
   };
 }
+const protocol = window.location.protocol;
+const hostname = window.location.hostname;
+const port = window.location.port;
 
+const fullHostname = `${protocol}//${hostname}${port ? ':' + port : ''}`;
+console.log(fullHostname);
 const defaultClashAPIConfig = {
-  baseURL: document.getElementById('app')?.getAttribute('data-base-url') ?? 'http://127.0.0.1:9090',
+  baseURL: fullHostname,
   secret: '',
   addedAt: 0,
 };
@@ -161,7 +166,7 @@ const defaultState: StateApp = {
 
   latencyTestUrl: 'https://www.gstatic.com/generate_204',
   selectedChartStyleIndex: 0,
-  theme: 'dark',
+  theme: 'auto',
 
   // type { [string]: boolean }
   collapsibleIsOpen: {},
