@@ -20,10 +20,16 @@ jobs:
         run: |
           pnpm install --no-frozen-lockfile
           pnpm build
-      - name: Archive and upload build artifacts
-        uses: actions/upload-artifact@v4
+      - name: Get version
+        id: get_version
+        run: |
+          echo ::set-output name=version::$(node -p "require('./package.json').version")
+      - name: Zip public folder
+        run: |
+          cd public
+          zip -r ../Yacd-meta.zip .
+      - name: Release
+        uses: softprops/action-gh-release@v0.1.15
         with:
-          name: Yacd-meta
-          path: |
-            public
-          if-no-files-found: error
+          tag_name: ${{ steps.get_version.outputs.version }}
+          files: Yacd-meta.zip
