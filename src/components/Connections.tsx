@@ -154,11 +154,11 @@ function formatConnectionDataItem(
     download,
     start: now - new Date(start).valueOf(),
     chains: modifyChains(chains),
-    rule: !rulePayload ? rule : `${rule} :: ${rulePayload}`,
+    rule: rule.split(' => ').at(-1),
     ...metadata,
     host: `${host2}:${destinationPort}`,
     sniffHost: sniffHost ? sniffHost : '-',
-    type: `${type}(${network})`,
+    type: `${type.split('/').at(-1)}/${network}`,
     source: getNameFromSource(sourceIP, sourceMap, source),
     downloadSpeedCurr: download - (prev ? prev.download : 0),
     uploadSpeedCurr: upload - (prev ? prev.upload : 0),
@@ -170,20 +170,9 @@ function formatConnectionDataItem(
 function modifyChains(chains: string[]): string {
   if (!Array.isArray(chains) || chains.length === 0) {
     return '';
-  }
-
-  if (chains.length === 1) {
+  } else {
     return chains[0];
   }
-
-  //倒序
-  if (chains.length === 2) {
-    return `${chains[1]} -> ${chains[0]}`;
-  }
-
-  const first = chains.pop();
-  const last = chains.shift();
-  return `${first} -> ${last}`;
 }
 
 function renderTableOrPlaceholder(columns, hiddenColumns, conns: FormattedConn[]) {
@@ -204,20 +193,20 @@ const sortDescFirst = true;
 const hiddenColumnsOrigin = ['id'];
 const columnsOrigin = [
   { accessor: 'id', show: false },
-  { Header: 'c_type', accessor: 'type' },
+  { Header: 'c_ctrl', accessor: 'ctrl' },
   { Header: 'c_process', accessor: 'process' },
   { Header: 'c_host', accessor: 'host' },
-  { Header: 'c_rule', accessor: 'rule' },
+  { Header: 'c_type', accessor: 'type' },
   { Header: 'c_chains', accessor: 'chains' },
-  { Header: 'c_time', accessor: 'start' },
+  { Header: 'c_rule', accessor: 'rule' },
   { Header: 'c_dl_speed', accessor: 'downloadSpeedCurr', sortDescFirst },
   { Header: 'c_ul_speed', accessor: 'uploadSpeedCurr', sortDescFirst },
   { Header: 'c_dl', accessor: 'download', sortDescFirst },
   { Header: 'c_ul', accessor: 'upload', sortDescFirst },
+  { Header: 'c_time', accessor: 'start' },
   { Header: 'c_source', accessor: 'source' },
   { Header: 'c_destination_ip', accessor: 'destinationIP' },
-  { Header: 'c_sni', accessor: 'sniffHost' },
-  { Header: 'c_ctrl', accessor: 'ctrl' },
+  // { Header: 'c_sni', accessor: 'sniffHost' },
 ];
 
 const savedHiddenColumns = localStorage.getItem('hiddenColumns');
