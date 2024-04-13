@@ -10,7 +10,6 @@ import { ClashAPIConfig } from '~/types';
 
 import * as configsAPI from '../api/configs';
 import * as trafficAPI from '../api/traffic';
-import { openModal } from './modals';
 
 export const getConfigs = (s: State) => s.configs.configs;
 export const getHaveFetched = (s: State) => s.configs.haveFetchedConfig;
@@ -23,13 +22,11 @@ export function fetchConfigs(apiConfig: ClashAPIConfig) {
       res = await configsAPI.fetchConfigs(apiConfig);
     } catch (err) {
       // TypeError and AbortError
-      dispatch(openModal('apiConfig'));
       return;
     }
 
     if (!res.ok) {
       console.log('Error fetch configs', res.statusText);
-      dispatch(openModal('apiConfig'));
       return;
     }
 

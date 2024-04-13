@@ -3,7 +3,6 @@ import { QueryClientProvider } from 'react-query';
 import { HashRouter as Router, Route, RouteObject, Routes, useRoutes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 
-import APIConfig from '~/components//APIConfig';
 import { About } from '~/components/about/About';
 import APIDiscovery from '~/components/APIDiscovery';
 import ErrorBoundary from '~/components/ErrorBoundary';
@@ -60,7 +59,6 @@ const App = () => (
             <Suspense fallback={<Loading />}>
               <Router>
                 <Routes>
-                  <Route path="/backend" element={<APIConfig />} />
                   <Route path="*" element={<SideBarApp />} />
                 </Routes>
               </Router>

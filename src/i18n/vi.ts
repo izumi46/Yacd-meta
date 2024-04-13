@@ -32,7 +32,6 @@ export const data = {
   Connections: 'Kết nối',
   current_backend: 'Backend hiện tại',
   Active: 'Hoạt động',
-  switch_backend: 'Chuyển đổi backend',
   Closed: 'Đã đóng',
   switch_theme: 'Chuyển đổi giao diện',
   theme: 'Giao diện',
@@ -74,7 +73,8 @@ export const data = {
   delete: 'Xóa',
   add_tag: 'Thêm thẻ',
   client_tag: 'Thẻ khách hàng',
-  sourceip_tip: 'Thêm / vào đầu để sử dụng biểu thức chính quy, nếu không sẽ là kết quả khớp chính xác(By Ohoang7)',
+  sourceip_tip:
+    'Thêm / vào đầu để sử dụng biểu thức chính quy, nếu không sẽ là kết quả khớp chính xác(By Ohoang7)',
   disconnect: 'Đóng kết nối',
   internel: 'Kết nối nội bộ',
 };

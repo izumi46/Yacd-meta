@@ -7,7 +7,6 @@ import { fetchConfigs } from '~/store/configs';
 import { closeModal } from '~/store/modals';
 import { State } from '~/store/types';
 
-import APIConfig from './APIConfig';
 import s0 from './APIDiscovery.module.scss';
 import Modal from './Modal';
 import { connect } from './StateProvider';
@@ -39,10 +38,6 @@ function APIDiscovery({ dispatch, apiConfig, modals }) {
       shouldCloseOnEsc={false}
       onRequestClose={closeApiConfigModal}
     >
-      <div className={s0.container}>
-        <APIConfig />
-      </div>
-
       <div className={s0.fixed}>
         <ThemeSwitcher />
       </div>

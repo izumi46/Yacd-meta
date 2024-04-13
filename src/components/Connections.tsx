@@ -129,7 +129,7 @@ function formatConnectionDataItem(
   now: number,
   sourceMap: { reg: string; name: string }[]
 ): FormattedConn {
-  const { id, metadata, upload, download, start, chains, rule, rulePayload } = i;
+  const { id, metadata, upload, download, start, chains, rule } = i;
   const {
     host,
     destinationPort,

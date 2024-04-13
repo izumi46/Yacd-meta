@@ -33,7 +33,6 @@ export const data = {
   Connections: '连接',
   current_backend: '当前后端',
   Active: '活动',
-  switch_backend: '切换后端',
   Closed: '已断开',
   switch_theme: '切换主题',
   theme: '主题',
